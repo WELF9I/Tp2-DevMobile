@@ -14,9 +14,9 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 public class MainActivity extends AppCompatActivity {
-    Button btn;
-    private EditText texte1, texte2;
-    private RadioButton r1, r2, r3, r4;
+    Button b;
+    private EditText texte1,texte2;
+    private RadioButton r1,r2,r3,r4;
     private TextView res;
 
     @Override
@@ -29,49 +29,44 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        texte1=findViewById(R.id.editText1);
+        texte2=findViewById(R.id.editText2);
+        r1=findViewById(R.id.r1);
+        r2=findViewById(R.id.r2);
+        r3=findViewById(R.id.r3);
+        r4=findViewById(R.id.r4);
+        res=findViewById(R.id.res);
+        b=findViewById(R.id.button);
 
-        texte1 = findViewById(R.id.editText1);
-        texte2 = findViewById(R.id.editText2);
-        r1 = findViewById(R.id.r1);
-        r2 = findViewById(R.id.r2);
-        r3 = findViewById(R.id.r3);
-        r4 = findViewById(R.id.r4);
-        res = findViewById(R.id.res);
-        btn = findViewById(R.id.button);
-
-        btn.setOnClickListener(new View.OnClickListener() {
+        b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 calculate();
-            }
-        });
-    }
+            }});}
 
     private void calculate() {
-        if (texte1.getText().toString().isEmpty() || texte2.getText().toString().isEmpty()) {
-            Toast.makeText(this, "Champs vide", Toast.LENGTH_SHORT).show();
-            return;
-        }
-        int num1 = Integer.parseInt(texte1.getText().toString());
-        int num2 = Integer.parseInt(texte2.getText().toString());
-        int result = 0;
+        if (texte1.getText().toString().isEmpty()||texte2.getText().toString().isEmpty()) {
+            Toast.makeText(this, "Champs vide",Toast.LENGTH_SHORT).show();
+            return;}
+        int num1=Integer.parseInt(texte1.getText().toString());
+        int num2=Integer.parseInt(texte2.getText().toString());
+        int result=0;
         if (r1.isChecked()) {
-            result = num1 + num2;
+            result=num1+num2;
         } else if (r2.isChecked()) {
-            result = num1 - num2;
+            result=num1-num2;
         } else if (r3.isChecked()) {
-            result = num1 * num2;
+            result=num1*num2;
         } else if (r4.isChecked()) {
             if (num2 != 0) {
-                result = num1 / num2;
+                result=num1/num2;
             } else {
-                Toast.makeText(this, "Division par zéro est impossible", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this,"Division par zéro est impossible !", Toast.LENGTH_SHORT).show();
                 return;
             }
         } else {
-            Toast.makeText(this, "Veuillez sélectionner une opération", Toast.LENGTH_SHORT).show();
-            return;
-        }
+            Toast.makeText(this,"Veuillez sélectionner une opération !", Toast.LENGTH_SHORT).show();
+            return;}
         res.setText(String.valueOf(result));
     }
 }
